@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-class Todolist extends React.Component {
-  render() {
-    return (
+function Todolist() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    setTodos([
+      { name: "Buy Milk", isDone: false },
+      { name: "Do push up", isDone: true },
+    ]);
+  }, []);
+
+  function displayTodos() {
+    return todos.map((todo) => (
       <div>
-        <div>Todolist</div>
+        <span>{todo.name}</span>
+        <span>{todo.isDone ? " - completed" : " - not completed"}</span>
       </div>
-    );
+    ));
   }
+
+  return (
+    <div>
+      <div>Todolist</div>
+      <div>{displayTodos()}</div>
+    </div>
+  );
 }
 
 export default Todolist;
