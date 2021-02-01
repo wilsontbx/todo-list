@@ -1,9 +1,10 @@
 import React from "react";
 import "./TodoItem.css";
 
-const TodoItem = ({ name, isDone }) => (
+const TodoItem = ({ name, isDone, setTodo }) => (
   <div className="todo-item">
-    <span className="todo-item__completed">
+    {/*on clicking the circle, toggle the status of the todo item*/}
+    <span className="todo-item__completed" onClick={() => setTodo(!isDone)}>
       {isDone && <img alt="done" src={`${process.env.PUBLIC_URL}/tick.png`} />}
     </span>
     <span className="todo-item__name">{name}</span>
