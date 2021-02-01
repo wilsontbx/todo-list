@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import TodoItem from "./TodoItem";
 
 function Todolist() {
   const [todos, setTodos] = useState([]);
@@ -13,8 +14,7 @@ function Todolist() {
   function displayTodos() {
     return todos.map((todo) => (
       <div>
-        <span>{todo.name}</span>
-        <span>{todo.isDone ? " - completed" : " - not completed"}</span>
+        <TodoItem name={todo.name} isDone={todo.isDone} />
       </div>
     ));
   }
