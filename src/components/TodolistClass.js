@@ -20,22 +20,28 @@ class TodoListClass extends React.Component {
       ],
     };
   }
+  createSetTodo(todo) {
+    return (isDone) => {
+      const currentTodo = this.state.todos.filter(
+        (todoToFilter) => todoToFilter.id === todo.id
+      )[0];
+      currentTodo.isDone = isDone;
+      this.setState({ todos: [...this.state.todos] });
+    };
+  }
 
+  createDeleteTodo(todo) {
+    return () => {
+      const todosWithoutItem = this.state.todos.filter(
+        (todoToFilter) => todoToFilter.id !== todo.id
+      );
+      this.setState({ todos: [...todosWithoutItem] });
+    };
+  }
   displayTodos() {
     return this.state.todos.map((todo) => {
-      const setTodo = (isDone) => {
-        const currentTodo = this.state.todos.filter(
-          (todoToFilter) => todoToFilter.id === todo.id
-        )[0];
-        currentTodo.isDone = isDone;
-        this.setState({ todos: [...this.state.todos] });
-      };
-      const deleteTodo = () => {
-        const todosWithoutItem = this.state.todos.filter(
-          (todoToFilter) => todoToFilter.id !== todo.id
-        );
-        this.setState({ todos: [...todosWithoutItem] });
-      };
+      const setTodo = this.createSetTodo(todo);
+      const deleteTodo = this.createDeleteTodo(todo);
       return (
         <TodoItem
           key={todo.id}
