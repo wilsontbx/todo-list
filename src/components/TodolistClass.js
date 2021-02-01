@@ -23,7 +23,6 @@ class TodoListClass extends React.Component {
 
   displayTodos() {
     return this.state.todos.map((todo) => {
-      // 4. add a method that can change the status of isDone
       const setTodo = (isDone) => {
         const currentTodo = this.state.todos.filter(
           (todoToFilter) => todoToFilter.id === todo.id
@@ -31,17 +30,56 @@ class TodoListClass extends React.Component {
         currentTodo.isDone = isDone;
         this.setState({ todos: [...this.state.todos] });
       };
-      // 5. pass in the method as a prop to Todo component
+      const deleteTodo = () => {
+        const todosWithoutItem = this.state.todos.filter(
+          (todoToFilter) => todoToFilter.id !== todo.id
+        );
+        this.setState({ todos: [...todosWithoutItem] });
+      };
       return (
-        <TodoItem name={todo.name} isDone={todo.isDone} setTodo={setTodo} />
+        <TodoItem
+          key={todo.id}
+          name={todo.name}
+          isDone={todo.isDone}
+          setTodo={setTodo}
+          deleteTodo={deleteTodo}
+        />
       );
     });
   }
+  handleChange = (event) => {
+    this.setState({ newItemName: event.target.value });
+  };
 
+  addNewTodo() {
+    const { newItemName: name } = this.state;
+    if (!name || !name.length) {
+      return;
+    }
+
+    this.setState({
+      newItemName: "",
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuidv4(),
+          name: name,
+          isDone: false,
+        },
+      ],
+    });
+  }
   render() {
     return (
-      <div>
+      <div className="todo-section">
         <div>Todolist Class</div>
+        <input
+          type="text"
+          value={this.state.newItemName}
+          onChange={this.handleChange}
+          placeholder="Take a break"
+        />
+        <button onClick={() => this.addNewTodo()}>add</button>
         <div>{this.displayTodos()}</div>
       </div>
     );

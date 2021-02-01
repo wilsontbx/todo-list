@@ -34,7 +34,7 @@ function Todolist() {
   }
 
   return (
-    <div>
+    <div className="todo-section">
       <div>Todolist functional</div>
       <div>{displayTodos()}</div>
     </div>
