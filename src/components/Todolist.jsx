@@ -84,9 +84,9 @@ function Todolist(props) {
             onChange={(e) => setTask(e.target.value)}
           />
         </Editable>
-        <span className="todo-menu_add" onClick={() => handleDelete(index)}>
-          <CancelIcon />
-        </span>
+        {/* <span className="todo-menu_add" onClick={() => handleDelete(index)}> */}
+        {/* <CancelIcon />
+        </span> */}
       </div>
       <TextField
         id="standard-basic"
