@@ -11,3 +11,10 @@
 .todo-menu_add {
   color: red;
 }
+
+.todo-section {
+  margin: 10px;
+  border-style: solid;
+  padding: 10px;
+  border-radius: 25px;
+}

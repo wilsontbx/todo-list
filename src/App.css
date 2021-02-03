@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   margin: 20px;
 }
 
@@ -41,4 +41,8 @@
 
 .todo-menu:hover {
   cursor: pointer;
+}
+
+.todolist {
+  margin: 10px;
 }
