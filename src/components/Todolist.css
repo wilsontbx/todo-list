@@ -1,0 +1,13 @@
+.todo-menu {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.todo-menu_add:hover {
+  cursor: pointer;
+}
+
+.todo-menu_add {
+  color: red;
+}
